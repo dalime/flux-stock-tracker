@@ -6,6 +6,9 @@ const UserActions = {
   },
   getDetails(text) {
     API.getDetails(text);
+  },
+  getChart(text) {
+    API.getChart(text);
   }
 }
 

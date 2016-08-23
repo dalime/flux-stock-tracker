@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import UserActions from '../actions/UserActions';
 import DetailStore from '../stores/DetailStore';
+import ChartStore from '../stores/ChartStore';
+import Chart from './Chart';
 
 export default class OneSymbol extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      details: UserActions.getDetails(this.props.params.symbol)
+      details: UserActions.getDetails(this.props.params.id),
+      data: UserActions.getChart(this.props.params.id)
     }
 
     this._onChange = this._onChange.bind(this);
@@ -30,12 +33,12 @@ export default class OneSymbol extends Component {
 
   refresh(e) {
     e.preventDefault();
-    UserActions.getDetails(this.props.params.symbol)
+    UserActions.getDetails(this.props.params.id);
+    UserActions.getChart(this.props.params.id);
   }
 
-//{Status, Name, Symbol, LastPrice, Change, ChangePercent, Timestamp, MSDate, MarketCap, Volume, ChangeYTD, ChangePercentYTD, High, Low, Open}
-
   render() {
+
     return (
       <div className="container">
         <h1>Details for {this.state.details.Name}</h1>
@@ -57,6 +60,8 @@ export default class OneSymbol extends Component {
           <li>Open: {this.state.details.Open}</li>
         </ul>
         <button className="btn btn-danger btn-sm" onClick={this.refresh}>Refresh</button>
+
+        <Chart symbol={this.props.params.id} data={this.props.data}/>
       </div>
     )
   }

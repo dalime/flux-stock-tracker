@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import LookupStore from '../stores/LookupStore';
 import DetailStore from '../stores/DetailStore';
+import ChartStore from '../stores/ChartStore';
 import UserActions from '../actions/UserActions';
 import { Link } from 'react-router';
 
@@ -22,10 +23,14 @@ export default class SymbolSearch extends Component {
 
   componentDidMount() {
     LookupStore.startListening(this._onChange);
+    ChartStore.startListening(this._onChange);
+    UserActions.getDetails(this.props.params.id);
+    UserActions.getChart(this.props.params.id);
   }
 
   componentWillUnmount() {
     LookupStore.stopListening(this._onChange);
+    ChartStore.stopListening(this._onChange);
   }
 
   _onChange() {

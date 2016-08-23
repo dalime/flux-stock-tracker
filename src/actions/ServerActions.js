@@ -12,6 +12,12 @@ const ServerActions = {
       type: 'RECEIVE_DETAILS',
       details
     })
+  },
+  receiveChart(data) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_CHART',
+      data
+    })
   }
 }
 

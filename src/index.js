@@ -8,7 +8,7 @@ import OneSymbol from './components/OneSymbol';
 render((
   <Router history={browserHistory}>
     <Route path="/" component={SymbolSearch} />
-    <Route path="/:symbol" component={OneSymbol} />
+    <Route path="/:id" component={OneSymbol} />
   </Router>
 ), document.getElementById('root')
 )
