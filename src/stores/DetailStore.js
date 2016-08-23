@@ -1,6 +1,5 @@
 import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
-import uuid from 'uuid';
 
 let _details = [];
 
@@ -11,7 +10,7 @@ class DetailStore extends EventEmitter {
     AppDispatcher.register(action => {
       switch(action.type) {
         case 'RECEIVE_DETAILS':
-          _lookups = action.details;
+          _details = action.details;
           this.emit('CHANGE');
           break;
       }

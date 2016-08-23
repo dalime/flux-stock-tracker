@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import LookupStore from '../stores/LookupStore';
+import DetailStore from '../stores/DetailStore';
 import UserActions from '../actions/UserActions';
+import { Link } from 'react-router';
 
 export default class SymbolSearch extends Component {
   constructor() {
@@ -15,6 +17,7 @@ export default class SymbolSearch extends Component {
     this._onChange = this._onChange.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.startSearch = this.startSearch.bind(this);
+    this.searchDetail = this.searchDetail.bind(this);
   }
 
   componentDidMount() {
@@ -42,12 +45,20 @@ export default class SymbolSearch extends Component {
 
   searchDetail(e) {
     e.preventDefault();
-    this.props.changeDetail(e.target.innerText);
+    UserActions.getDetails(e.target.innerText);
   }
 
   render() {
-    let Lis = this.state.lookups.map(lookup => {
-      return <li onClick={this.searchDetail}>{lookup}</li>
+    let rows = this.state.lookups.map((lookup, index) => {
+      let path = "/" + lookup.Symbol
+      return (
+        <tr key={index}>
+          <td>{lookup.Name}</td>
+          <td>{lookup.Symbol}</td>
+          <td>{lookup.Exchange}</td>
+          <td><Link to={path}><button>See Details</button></Link></td>
+        </tr>
+      )
     })
 
     return (
@@ -55,9 +66,19 @@ export default class SymbolSearch extends Component {
         <h1>Flux Stock Tracker</h1>
         <input type="text" onChange={this.onInputChange}/>
         <button onClick={this.startSearch}>Search</button>
-        <ul>
-          {Lis}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Symbol</th>
+              <th>Exchange</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
       </div>
     )
   }
