@@ -37,7 +37,7 @@ export default class OneSymbol extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Details for {this.state.details.Name}</h1>
         <ul>
           <li>Status: {this.state.details.Status}</li>
@@ -56,7 +56,7 @@ export default class OneSymbol extends Component {
           <li>Low: {this.state.details.Low}</li>
           <li>Open: {this.state.details.Open}</li>
         </ul>
-        <button onClick={this.refresh}>Refresh</button>
+        <button className="btn btn-danger btn-sm" onClick={this.refresh}>Refresh</button>
       </div>
     )
   }

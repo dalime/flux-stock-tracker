@@ -56,17 +56,19 @@ export default class SymbolSearch extends Component {
           <td>{lookup.Name}</td>
           <td>{lookup.Symbol}</td>
           <td>{lookup.Exchange}</td>
-          <td><Link to={path}><button>See Details</button></Link></td>
+          <td><Link to={path}><button className="btn btn-success btn-sm">See Details</button></Link></td>
         </tr>
       )
     })
 
     return (
-      <div>
+      <div className="container">
         <h1>Flux Stock Tracker</h1>
-        <input type="text" onChange={this.onInputChange}/>
-        <button onClick={this.startSearch}>Search</button>
-        <table>
+        <form className="form-group">
+          <input type="text" onChange={this.onInputChange}/>
+          <button className="btn btn-primary btn-sm" onClick={this.startSearch}>Search</button>
+        </form>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Name</th>
