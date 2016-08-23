@@ -7,7 +7,7 @@ export default class SimpleLineChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {}
+      data: []
     }
     this._onChange = this._onChange.bind(this);
   }
