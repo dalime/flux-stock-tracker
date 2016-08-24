@@ -25,7 +25,6 @@ export default class SymbolSearch extends Component {
     LookupStore.startListening(this._onChange);
     ChartStore.startListening(this._onChange);
     UserActions.getDetails(this.props.params.id);
-    UserActions.getChart(this.props.params.id);
   }
 
   componentWillUnmount() {

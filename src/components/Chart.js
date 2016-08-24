@@ -28,7 +28,6 @@ export default class SimpleLineChart extends Component {
 
 	render() {
     if (this.state.data) {
-      console.log ('this.state.data:', this.state.data)
       let obj = this.state.data.map((value, index) => {
         return {Prices: value, Dates: index}
       })
